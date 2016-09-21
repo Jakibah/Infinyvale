@@ -21,19 +21,19 @@ public class InputHandler {
 			running = false;
 			p.setSpeed(p.getWalkspeed());
 		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+		if (Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
 			direction = 0;
 			walking = true;
 			WalkUp();
-		} else if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+		} else if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 			direction = 1;
 			walking = true;
 			WalkRight();
-		} else if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
+		} else if (Keyboard.isKeyDown(Keyboard.KEY_S) || Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
 			direction = 2;
 			walking = true;
 			WalkDown();
-		} else if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
+		} else if (Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
 			direction = 3;
 			walking = true;
 			WalkLeft();

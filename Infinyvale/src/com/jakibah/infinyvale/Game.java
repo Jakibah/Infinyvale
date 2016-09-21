@@ -12,7 +12,7 @@ public class Game {
 
 	public static void Start() {
 		System.out.println("Starting...");
-		p1 = new Player(Canvas.QuickLoad("test32"), 0, 0, 32, 2, 4);
+		p1 = new Player(Canvas.QuickLoad("testplayer32"), 0, 0, 32, 2, 4);
 		p1handler = new InputHandler(p1);
 
 	}
