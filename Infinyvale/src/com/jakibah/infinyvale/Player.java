@@ -73,6 +73,7 @@ public class Player {
 	
 	public void Draw(){
 		Canvas.DrawQuadTex(tex, x, y, texturefactor, texturefactor);
+		System.out.println("Drawing player");
 	}
 	
 	public void Update(){
