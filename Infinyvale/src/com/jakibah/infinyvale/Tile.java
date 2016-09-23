@@ -2,6 +2,8 @@ package com.jakibah.infinyvale;
 
 import org.newdawn.slick.opengl.Texture;
 
+import com.jakibah.infinyvale.enums.TileType;
+
 public class Tile {
 	
 	private Texture tex;
@@ -9,10 +11,11 @@ public class Tile {
 	private int x;
 	private int y;
 	private int texturefactor;
+	private TileType type;
 
-	public Tile(Texture tex, boolean solid, int x, int y, int texturefactor){
-		this.tex = tex;
-		this.solid = solid;
+	public Tile(TileType type,int x, int y, int texturefactor){
+		this.tex = type.tex;
+		this.solid = type.solid;
 		this.x = x;
 		this.y = y;
 		this.texturefactor= texturefactor;

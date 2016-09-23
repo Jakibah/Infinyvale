@@ -1,5 +1,7 @@
 package com.jakibah.infinyvale;
 
+import com.jakibah.infinyvale.enums.TileType;
+
 public class Chunk {
 
 	public Tile[][] map;
@@ -11,8 +13,7 @@ public class Chunk {
 		map = new Tile[TilesWide][TileHeight];
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
-				map[i][j] = new Tile(Canvas.QuickLoad("testtile32"), false,
-						i * 32, j * 32, 32);
+				map[i][j] = new Tile(TileType.Test, i * 32, j * 32, 32);
 			}
 		}
 	}
@@ -25,8 +26,7 @@ public class Chunk {
 			for (int j = 0; j < map[i].length; j++) {
 				switch (newMap[j][i]) {
 				case 0:
-					map[i][j] = new Tile(Canvas.QuickLoad("testtile32"), false,
-							i * 32, j * 32, 32);
+					map[i][j] = new Tile(TileType.Test, i * 32, j * 32, 32);
 					break;
 				}
 
