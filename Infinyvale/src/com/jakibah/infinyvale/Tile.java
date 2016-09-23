@@ -20,7 +20,7 @@ public class Tile {
 	
 	public void Draw(){
 		Canvas.DrawQuadTex(tex, x, y, texturefactor, texturefactor);
-		System.out.println("Drawing tile");
+		//System.out.println("Drawing tile");
 	}
 	
 	public void Update(){

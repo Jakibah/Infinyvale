@@ -48,7 +48,7 @@ public class Player {
 		}else{
 			walking = false;
 		}
-		System.out.println("Direction: " + direction + " Walking: " + walking +   " Running: " + running);
+		//System.out.println("Direction: " + direction + " Walking: " + walking +   " Running: " + running);
 	}
 	
 	private void WalkLeft() {
@@ -73,7 +73,7 @@ public class Player {
 	
 	public void Draw(){
 		Canvas.DrawQuadTex(tex, x, y, texturefactor, texturefactor);
-		System.out.println("Drawing player");
+		//System.out.println("Drawing player");
 	}
 	
 	public void Update(){
