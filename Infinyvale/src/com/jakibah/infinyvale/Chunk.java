@@ -6,6 +6,7 @@ public class Chunk {
 
 	public Tile[][] map;
 	private int TilesWide, TileHeight;
+	public Item[] items;
 
 	public Chunk() {
 		this.TilesWide = 20;
@@ -34,10 +35,15 @@ public class Chunk {
 		}
 	}
 
+	public void HandleItems() {
+		for (Item i : items) {
+			i.Update();
+		}
+	}
+
 	public Tile GetTile(int xplace, int yplace) {
 
-		if (xplace < TilesWide && yplace < TileHeight && xplace > -1
-				&& yplace > -1)
+		if (xplace < TilesWide && yplace < TileHeight && xplace > -1 && yplace > -1)
 			return map[xplace][yplace];
 		else
 			return null;
