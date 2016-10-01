@@ -17,7 +17,7 @@ public class Canvas {
 	public static void CreateCanvas(int width, int height, String title, int fps) {
 
 		try {
-		    Display.setDisplayMode(new DisplayMode(width, height));
+			Display.setDisplayMode(new DisplayMode(width, height));
 			Display.setTitle(title);
 			Display.create();
 
@@ -45,7 +45,8 @@ public class Canvas {
 		System.exit(0);
 	}
 
-	public static void DrawQuadTex(Texture tex, float x, float y, float width, float height) {
+	public static void DrawQuadTex(Texture tex, float x, float y, float width,
+			float height) {
 		tex.bind();
 		glTranslatef(x, y, 0);
 		// GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
@@ -77,12 +78,14 @@ public class Canvas {
 
 	public static Texture QuickLoad(String name) {
 		Texture tex = null;
-		tex = loadTexture("com/jakibah/infinyvale/resources/textures/" + name + ".png", "PNG");
+		tex = loadTexture("com/jakibah/infinyvale/resources/textures/" + name
+				+ ".png", "PNG");
 		return tex;
 
 	}
 
-	public static boolean isColliding(int ax, int ay, int cx, int cy, int ox, int oy) {
+	public static boolean isColliding(int ax, int ay, int cx, int cy, int ox,
+			int oy) {
 		if (ox > ax && ox < cx) {
 			if (oy > ay && oy < cy) {
 				return true;

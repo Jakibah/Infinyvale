@@ -13,31 +13,33 @@ public class BagItem {
 	private int power;
 	private Inventory i;
 
-	public BagItem(ItemType type, Inventory i, Texture tex, int texturefactor, int durability, int power) {
-           this.type = type;
-           this.tex = tex;
-           this.texturefactor = texturefactor;
-           this.durability = durability;
-           this.power = power;
+	public BagItem(ItemType type, Inventory i, Texture tex, int texturefactor,
+			int durability, int power) {
+		this.type = type;
+		this.tex = tex;
+		this.texturefactor = texturefactor;
+		this.durability = durability;
+		this.power = power;
 	}
-	public void Update(){
+
+	public void Update() {
 		DurabilityCheck();
 	}
-	
-	public void DurabilityCheck(){
-		if(this.getDurability() <= 0){
+
+	public void DurabilityCheck() {
+		if (this.getDurability() <= 0) {
 			Destroy();
 		}
 	}
-	
-	public void Use(){
+
+	public void Use() {
 		this.setDurability(this.getDurability() - 1);
-		//override me
+		// override me
 	}
-	
-	public void Destroy(){
+
+	public void Destroy() {
 		this.getI().getInventory().remove(this);
-		//override me
+		// override me
 	}
 
 	public ItemType getType() {
@@ -79,9 +81,11 @@ public class BagItem {
 	public void setPower(int power) {
 		this.power = power;
 	}
+
 	public Inventory getI() {
 		return i;
 	}
+
 	public void setI(Inventory i) {
 		this.i = i;
 	}
