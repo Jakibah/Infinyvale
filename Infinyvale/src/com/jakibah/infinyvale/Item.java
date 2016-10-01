@@ -1,7 +1,7 @@
 package com.jakibah.infinyvale;
 
 import org.lwjgl.input.Keyboard;
-import org.newdawn.slick.Color;
+
 import org.newdawn.slick.opengl.Texture;
 
 import com.jakibah.infinyvale.enums.ItemType;
@@ -41,12 +41,19 @@ public class Item {
 		if (Canvas.isColliding(Game.p.getX(), Game.p.getY(),
 				Game.p.getX() + 32, Game.p.getY() + 32, this.x + 16,
 				this.y + 16)) {
+
 			
 			td.Draw(0, 0, "Press E to pick up.");
 			if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
 				this.ToBag();
+
+			if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
+				this.ToBag();
+				System.out.println("Colliding");
+
 			}
 		}
+	}
 	}
 
 	public void ToBag() {
