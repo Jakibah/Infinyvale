@@ -1,11 +1,19 @@
 package com.jakibah.infinyvale;
 
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
+
+import com.jakibah.infinyvale.enums.ItemType;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public class Game {
 
-	static Player p1 = null;
-	static Chunk c1 = null;
+	static Player p = null;
+	static Inventory i = null;
+	static World world = null;
+	static Item testitem = null;
+	
 
 	public static void main(String[] args) {
 		Canvas.CreateCanvas(640, 480, "Infinyvale", 60);
@@ -14,17 +22,19 @@ public class Game {
 
 	public static void Start() {
 		System.out.println("Starting...");
-		p1 = new Player(Canvas.QuickLoad("testplayer32"), 0, 0, 32, 2, 4);
-		c1 = new Chunk();
-
+		p = new Player(Canvas.QuickLoad("testplayer32"), (Display.getWidth() / 2) - 16, (Display.getHeight() /2) - 32, 32, 2, 4);
+		i = new Inventory(p);
+		world = new World(40);
+		testitem = new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), 103, 320, world, 32, 99, 1);
 	}
 
 	public static void Update() {
-		c1.Update();
-		p1.Update();
-		System.out.println("Mouse: " + Mouse.getY());
-		System.out.println("Player: " + p1.getY());
-        System.out.println(Canvas.isColliding(p1.getX(), p1.getY(), p1.getX() + 32, p1.getY() + 32, Mouse.getX(), Mouse.getY()));
+		world.Update();
+		p.Update();
+		
+		
+		
+	
 	}
 
 	public static void Stop() {

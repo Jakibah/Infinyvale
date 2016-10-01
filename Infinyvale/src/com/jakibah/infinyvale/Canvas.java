@@ -17,7 +17,7 @@ public class Canvas {
 	public static void CreateCanvas(int width, int height, String title, int fps) {
 
 		try {
-			Display.setDisplayMode(new DisplayMode(width, height));
+		    Display.setDisplayMode(new DisplayMode(width, height));
 			Display.setTitle(title);
 			Display.create();
 

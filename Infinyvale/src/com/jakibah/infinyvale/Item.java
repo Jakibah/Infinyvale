@@ -8,18 +8,21 @@ public class Item {
 	private ItemType type;
 	private Texture tex;
 	private int x, y;
+	private World w;
 	private int texturefactor;
 	private int durability;
 	private int power;
 
-	public Item(ItemType type, Texture tex, int x, int y, int texturefactor, int durability, int power) {
+	public Item(ItemType type, Texture tex, int x, int y, World w,int texturefactor, int durability, int power) {
 		this.type = type;
 		this.tex = tex;
 		this.x = y;
 		this.y = y;
+		this.w = w;
 		this.texturefactor = texturefactor;
 		this.durability = durability;
 		this.power = power;
+		this.w.getItems().add(this);
 	}
 
 	public void Draw() {
@@ -28,10 +31,19 @@ public class Item {
 
 	public void Update() {
 		Draw();
+		CheckPickUp();
+	}
+	public void CheckPickUp(){
+		if(Canvas.isColliding(Game.p.getX(), Game.p.getY(), Game.p.getX() + 32, Game.p.getY() - 32, x, y));
+	    System.out.println("Colliding");
+		this.ToBag();
 	}
 
 	public void ToBag() {
-		new BagItem(type, tex, texturefactor, durability, power);
+		Inventory i = null;
+		i = Game.p.getI();
+		Game.world.getItems().remove(this);
+		i.getInventory().add(new BagItem(type, i, tex, texturefactor, durability, power));
 	}
 
 	public ItemType getType() {

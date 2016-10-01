@@ -1,6 +1,10 @@
 package com.jakibah.infinyvale;
 
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.Display;
+
+
+
 import org.newdawn.slick.opengl.Texture;
 
 public class Player {
@@ -10,6 +14,7 @@ public class Player {
 	private int direction = 2;
 	private boolean walking = false;
 	private boolean running = false;
+	private Inventory i;
 
 	public Player(Texture tex, int x, int y, int texturefactor, int walkspeed,
 			int runspeed) {
@@ -82,7 +87,12 @@ public class Player {
 		// System.out.println("Drawing player");
 	}
 
+	public void HandleInventory() {
+		this.getI().Update();
+	}
+
 	public void Update() {
+		HandleInventory();
 		HandleControls();
 		Draw();
 
@@ -166,6 +176,14 @@ public class Player {
 
 	public void setRunning(boolean running) {
 		this.running = running;
+	}
+
+	public Inventory getI() {
+		return i;
+	}
+
+	public void setI(Inventory i) {
+		this.i = i;
 	}
 
 }
