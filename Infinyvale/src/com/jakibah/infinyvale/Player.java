@@ -1,10 +1,6 @@
 package com.jakibah.infinyvale;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.Display;
-
-
-
 import org.newdawn.slick.opengl.Texture;
 
 public class Player {

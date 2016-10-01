@@ -2,8 +2,6 @@ package com.jakibah.infinyvale;
 
 import java.util.ArrayList;
 
-import javax.lang.model.util.Elements;
-
 import com.jakibah.infinyvale.enums.TileType;
 
 public class World {
@@ -11,6 +9,7 @@ public class World {
 	public Tile[][] map;
 	private int TilesWide, TileHeight;
 	public ArrayList<Item> items = new ArrayList<Item>();
+	public ArrayList<Item> itemstoremove = new ArrayList<Item>();
 
 	public World(int volume) {
 
@@ -40,7 +39,9 @@ public class World {
 		}
 	}
 
-	public synchronized void HandleItems() {
+	public void HandleItems() {
+		items.removeAll(itemstoremove);
+		itemstoremove.clear();
 		if (!items.isEmpty()) {
 			for (Item i : items) {
 				i.Update();

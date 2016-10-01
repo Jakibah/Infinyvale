@@ -15,10 +15,9 @@ public class Inventory {
 
 	public void Update() {
 		if (inventory.isEmpty()) {
-          //i do nothing
+			// i do nothing
 		} else {
-			equiped = inventory.get(0);
-			//System.out.println(equiped.getType());
+			setEquiped(inventory.get(0));
 		}
 	}
 
@@ -36,6 +35,14 @@ public class Inventory {
 
 	public void setP(Player p) {
 		this.p = p;
+	}
+
+	public BagItem getEquiped() {
+		return equiped;
+	}
+
+	public void setEquiped(BagItem equiped) {
+		this.equiped = equiped;
 	}
 
 }

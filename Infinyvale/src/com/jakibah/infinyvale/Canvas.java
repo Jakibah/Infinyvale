@@ -6,6 +6,7 @@ import java.io.InputStream;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
@@ -13,11 +14,12 @@ import org.newdawn.slick.util.ResourceLoader;
 import static org.lwjgl.opengl.GL11.*;
 
 public class Canvas {
+	static TrueTypeFont fontdrawer;
 
 	public static void CreateCanvas(int width, int height, String title, int fps) {
 
 		try {
-		    Display.setDisplayMode(new DisplayMode(width, height));
+			Display.setDisplayMode(new DisplayMode(width, height));
 			Display.setTitle(title);
 			Display.create();
 
@@ -81,6 +83,7 @@ public class Canvas {
 		return tex;
 
 	}
+
 
 	public static boolean isColliding(int ax, int ay, int cx, int cy, int ox, int oy) {
 		if (ox > ax && ox < cx) {
