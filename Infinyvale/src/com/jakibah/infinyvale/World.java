@@ -1,103 +1,86 @@
 package com.jakibah.infinyvale;
 
-import java.util.ArrayList;
-
-import com.jakibah.infinyvale.enums.TileType;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.OpenOption;
+import java.nio.file.StandardOpenOption;
+import java.util.List;
 
 public class World {
 
-	public Tile[][] map;
-	private int TilesWide, TileHeight;
-	public ArrayList<Item> items = new ArrayList<Item>();
-	public ArrayList<Item> itemstoremove = new ArrayList<Item>();
+	private File file;
+	private String world;
+	private boolean newworld;
+	private int loadedchunk;
+	private BufferedWriter worldwriter = null;
+	private Chunk ChunktoLoad;
 
-	public World(int volume) {
+	public World(String world) throws IOException {
+		this.world = world;
+		file = new File("worlds/" + world + ".world");
+		if (!file.exists()) {
+			newworld = true;
+			file.createNewFile();
+			worldwriter = Files.newBufferedWriter(file.toPath(),
+					StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+			
+			worldwriter.write("loadedchunk: " + 0);
+			worldwriter.flush();
 
-		this.TilesWide = volume / 2;
-		this.TileHeight = volume / 2;
-		map = new Tile[TilesWide][TileHeight];
-		for (int i = 0; i < map.length; i++) {
-			for (int j = 0; j < map[i].length; j++) {
-				map[i][j] = new Tile(TileType.Test, i * 32, j * 32, 32);
-			}
+		} else {
+			worldwriter = Files.newBufferedWriter(file.toPath(),
+					StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+			newworld = false;
+
+			List<String> lines = Files.readAllLines(file.toPath(),
+					StandardCharsets.UTF_8);
+			loadedchunk = Integer.parseInt(lines.get(0).substring(13,
+					lines.get(0).length()));
+
 		}
+
 	}
 
-	public World(int[][] newMap) {
-		this.TilesWide = newMap[0].length;
-		this.TileHeight = newMap.length;
-		map = new Tile[TilesWide][TileHeight];
-		for (int i = 0; i < map.length; i++) {
-			for (int j = 0; j < map[i].length; j++) {
-				switch (newMap[j][i]) {
-				case 0:
-					map[i][j] = new Tile(TileType.Test, i * 32, j * 32, 32);
-					break;
-				}
-
-			}
+	public void Update() throws IOException {
+		List<String> lines = Files.readAllLines(file.toPath(),
+				StandardCharsets.UTF_8);
+		if(!lines.contains("chunk: " + loadedchunk)){
+			System.out.println(loadedchunk);
+			worldwriter.newLine();
+			ChunktoLoad = new Chunk(loadedchunk);
+			worldwriter.write("chunk: " + loadedchunk);worldwriter.newLine();
+			worldwriter.write("map: " + ChunktoLoad.getMap());
+			worldwriter.flush();
 		}
+		ChunktoLoad.Update();
 	}
 
-	public void HandleItems() {
-		items.removeAll(itemstoremove);
-		itemstoremove.clear();
-		if (!items.isEmpty()) {
-			for (Item i : items) {
-				i.Update();
-			}
-		}
+	public File getFile() {
+		return file;
 	}
 
-	public Tile GetTile(int xplace, int yplace) {
-
-		if (xplace < TilesWide && yplace < TileHeight && xplace > -1
-				&& yplace > -1)
-			return map[xplace][yplace];
-		else
-			return null;
+	public void setFile(File file) {
+		this.file = file;
 	}
 
-	public void Update() {
-		for (int i = 0; i < map.length; i++) {
-			for (int j = 0; j < map[i].length; j++) {
-				Tile t = map[i][j];
-				t.Update();
-			}
-		}
-		HandleItems();
+	public String getWorld() {
+		return world;
 	}
 
-	public Tile[][] getMap() {
-		return map;
+	public boolean isNewworld() {
+		return newworld;
 	}
 
-	public void setMap(Tile[][] map) {
-		this.map = map;
+	public int getLoadedchunk() {
+		return loadedchunk;
 	}
 
-	public int getTilesWide() {
-		return TilesWide;
-	}
-
-	public void setTilesWide(int tilesWide) {
-		TilesWide = tilesWide;
-	}
-
-	public int getTileHeight() {
-		return TileHeight;
-	}
-
-	public void setTileHeight(int tileHeight) {
-		TileHeight = tileHeight;
-	}
-
-	public ArrayList<Item> getItems() {
-		return items;
-	}
-
-	public void setItems(ArrayList<Item> items) {
-		this.items = items;
+	public void setLoadedchunk(int loadedchunk) {
+		this.loadedchunk = loadedchunk;
 	}
 
 }

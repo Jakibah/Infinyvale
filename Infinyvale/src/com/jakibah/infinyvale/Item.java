@@ -15,7 +15,7 @@ public class Item {
 	private int power;
 	private Textdrawer td = new Textdrawer("Cardinal");
 
-	public Item(ItemType type, Texture tex, int x, int y, World w,
+	public Item(ItemType type, Texture tex, int x, int y, Chunk w,
 			int texturefactor, int durability, int power) {
 		this.type = type;
 		this.tex = tex;
@@ -24,7 +24,7 @@ public class Item {
 		this.texturefactor = texturefactor;
 		this.durability = durability;
 		this.power = power;
-		Game.world.getItems().add(this);
+		//Game.world.getLoadedChunk.getItems().add(this);
 	}
 
 	public void Draw() {
@@ -65,7 +65,7 @@ public class Item {
 	}
 
 	public void RemoveFromList() {
-		Game.world.itemstoremove.add(this);
+		//Game.world.getLoadedChunk.itemstoremove.add(this);
 	}
 
 	public ItemType getType() {
