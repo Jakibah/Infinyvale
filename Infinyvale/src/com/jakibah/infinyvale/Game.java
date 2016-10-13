@@ -10,7 +10,6 @@ public class Game {
 
 	static Player p = null;
 	static Inventory i = null;
-	static Item testitem = null;
 	static World world = null;
 
 	public static void main(String[] args) {

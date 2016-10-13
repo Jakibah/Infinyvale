@@ -13,6 +13,7 @@ public class Chunk {
 	public ArrayList<Item> items = new ArrayList<Item>();
 	public ArrayList<Item> itemstoremove = new ArrayList<Item>();
 	private int ID;
+	private int[][] newMap;
 
 	public Chunk(int ID) {
         this.ID = ID;
@@ -30,6 +31,7 @@ public class Chunk {
 		this.ID = ID;
 		this.TilesWide = newMap[0].length;
 		this.TileHeight = newMap.length;
+		this.newMap = newMap;
 		map = new Tile[TilesWide][TileHeight];
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
@@ -110,6 +112,14 @@ public class Chunk {
 
 	public void setID(int iD) {
 		ID = iD;
+	}
+
+	public int[][] getNewMap() {
+		return newMap;
+	}
+
+	public void setNewMap(int[][] newMap) {
+		this.newMap = newMap;
 	}
 
 }
