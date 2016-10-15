@@ -6,7 +6,8 @@ import com.jakibah.infinyvale.Canvas;
 
 public enum TileType {
 
-	Test(Canvas.QuickLoad("testtile32"), false);
+	Test(Canvas.QuickLoad("testtile32"), false), Test2(Canvas.QuickLoad("test2tile32"), false);
+	
 
 	public Texture tex;
 	public boolean solid;

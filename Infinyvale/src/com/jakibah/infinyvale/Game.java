@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import org.lwjgl.opengl.Display;
 
-import com.jakibah.infinyvale.enums.ItemType;
-
 public class Game {
 
 	static Player p = null;
@@ -22,6 +20,7 @@ public class Game {
 		p = new Player(Canvas.QuickLoad("testplayer32"),
 				(Display.getWidth() / 2) - 16, (Display.getHeight() / 2) - 32,
 				32, 2, 4);
+		
 		i = new Inventory(p);
 
 		try {

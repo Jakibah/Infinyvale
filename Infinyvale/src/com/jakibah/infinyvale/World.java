@@ -1,18 +1,14 @@
 package com.jakibah.infinyvale;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 import org.lwjgl.opengl.Display;
-
-import com.jakibah.infinyvale.enums.TileType;
 
 public class World {
 
@@ -30,21 +26,17 @@ public class World {
 		if (!file.exists()) {
 			newworld = true;
 			file.createNewFile();
-			worldwriter = Files.newBufferedWriter(file.toPath(),
-					StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+			worldwriter = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8, StandardOpenOption.APPEND);
 
 			worldwriter.write("loadedchunk: " + 0);
 			worldwriter.flush();
 
 		} else {
-			worldwriter = Files.newBufferedWriter(file.toPath(),
-					StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+			worldwriter = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8, StandardOpenOption.APPEND);
 			newworld = false;
 
-			List<String> lines = Files.readAllLines(file.toPath(),
-					StandardCharsets.UTF_8);
-			loadedchunk = Integer.parseInt(lines.get(0).substring(13,
-					lines.get(0).length()));
+			List<String> lines = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8);
+			loadedchunk = Integer.parseInt(lines.get(0).substring(13, lines.get(0).length()));
 
 		}
 
@@ -52,10 +44,8 @@ public class World {
 
 	public void Update() throws IOException {
 		HandlePlayerScreen();
-		List<String> lines = Files.readAllLines(file.toPath(),
-				StandardCharsets.UTF_8);
+		List<String> lines = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8);
 		if (!lines.contains("chunk: " + loadedchunk + " (")) {
-
 			// one character is 1 byte 1 chunk = 917 bytes = 0,917 kb = 0,000917
 			// mb
 			// 1 gb world = 1090513 chunks
@@ -76,6 +66,10 @@ public class World {
 					case Test:
 						towrite = 0;
 						break;
+					case Test2:
+						towrite = 1;
+						break;
+
 					}
 					worldwriter.write(towrite + ", ");
 					System.out.println("Loading new Chunk");
@@ -94,27 +88,33 @@ public class World {
 				int TilesWide = Display.getWidth() / 32;
 				int TileHeight = Display.getHeight() / 32;
 				int[][] newMap = new int[TilesWide][TileHeight];
-				for (Character character : c) {
-					if (character != ',' && character != ' ') {
-						int towrite = Integer.parseInt(character.toString());
-
-						for (int i = 0; i < newMap.length; i++) {
-							for (int j = 0; j < newMap[i].length; j++) {
-
+				int towrite = 0;
+				int chartowrite = 0;
+				
+				for (int i = 0; i < newMap.length; i++) {
+					for (int j = 0; j < newMap[i].length; j++) {
+						Character character = c[chartowrite];
+						chartowrite = chartowrite + 3;
+							if (character != ',' && character != ' ') {
+								towrite = Integer.parseInt(character.toString());
 								newMap[i][j] = towrite;
 
-							}
+							
 						}
 					}
 				}
 
-				Chunk ChunktoLoad = new Chunk(newMap, loadedchunk);
+				ChunktoLoad = new Chunk(newMap, loadedchunk);
 				First = false;
 
 			}
 		}
 
 		ChunktoLoad.Update();
+		// System.out.println(ChunktoLoad.getID());
+	}
+
+	public void Insertchar(Character c) {
 
 	}
 
