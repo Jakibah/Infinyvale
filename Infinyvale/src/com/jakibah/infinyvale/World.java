@@ -114,9 +114,7 @@ public class World {
 		// System.out.println(ChunktoLoad.getID());
 	}
 
-	public void Insertchar(Character c) {
-
-	}
+	
 
 	public void HandlePlayerScreen() {
 		if (Game.p.getX() >= Display.getWidth()) {
@@ -163,6 +161,14 @@ public class World {
 
 	public void setLoadedchunk(int loadedchunk) {
 		this.loadedchunk = loadedchunk;
+	}
+
+	public Chunk getChunktoLoad() {
+		return ChunktoLoad;
+	}
+
+	public void setChunktoLoad(Chunk chunktoLoad) {
+		ChunktoLoad = chunktoLoad;
 	}
 
 }

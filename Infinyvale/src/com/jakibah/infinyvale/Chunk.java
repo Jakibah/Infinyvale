@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.lwjgl.opengl.Display;
 
+import com.jakibah.infinyvale.enums.ItemType;
 import com.jakibah.infinyvale.enums.TileType;
 
 public class Chunk {
@@ -21,10 +22,15 @@ public class Chunk {
 	      this.TilesWide = Display.getWidth() / 32;
 	      this.TileHeight = Display.getHeight() / 32;
 	      map = new Tile[TilesWide][TileHeight];
+	      Random r = new Random();
+	      //TODO Item in chunk system 
+	      //items.add(new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), r.nextInt(Display.getWidth() - 32), r.nextInt(Display.getHeight() - 32), this, 32, 100, 1));
+	      
 	      for (int i = 0; i < map.length; i++) {
 	         for (int j = 0; j < map[i].length; j++) {
-	            Random r = new Random();
-	            int test = r.nextInt(2);
+	            //TODO map generation
+	        	//int test = r.nextInt(2);
+	        	 int test = 0;
 	            switch(test){
 	            case 0:
 	            	 map[i][j] = new Tile(TileType.Test, i * 32, j * 32, 32);
@@ -44,7 +50,9 @@ public class Chunk {
 	      this.TileHeight = newMap[0].length;
 	      this.newMap = newMap;
 	      map = new Tile[TilesWide][TileHeight];
-	      
+	      Random r = new Random();
+	      //TODO Item in chunk system 
+	      //items.add(new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), r.nextInt(Display.getWidth() - 32), r.nextInt(Display.getHeight() - 32), this, 32, 100, 1));
 	      for (int i = 0; i < map.length; i++) {
 	         for (int j = 0; j < map[i].length; j++) {
 	            switch (newMap[i][j]) {

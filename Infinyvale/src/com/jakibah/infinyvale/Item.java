@@ -24,7 +24,7 @@ public class Item {
 		this.texturefactor = texturefactor;
 		this.durability = durability;
 		this.power = power;
-		//Game.world.getLoadedChunk.getItems().add(this);
+		//Game.world.getChunktoLoad().items.add(this);
 	}
 
 	public void Draw() {
@@ -38,6 +38,7 @@ public class Item {
 	}
 
 	public void CheckPickUp() {
+		//TODO implement new collision system
 		if (Canvas.isColliding(Game.p.getX(), Game.p.getY(),
 				Game.p.getX() + 32, Game.p.getY() + 32, this.x + 16,
 				this.y + 16)) {
@@ -65,7 +66,7 @@ public class Item {
 	}
 
 	public void RemoveFromList() {
-		//Game.world.getLoadedChunk.itemstoremove.add(this);
+		Game.world.getChunktoLoad().itemstoremove.add(this);
 	}
 
 	public ItemType getType() {
