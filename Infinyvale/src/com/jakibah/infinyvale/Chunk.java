@@ -33,7 +33,7 @@ public class Chunk {
 	        	 int test = 0;
 	            switch(test){
 	            case 0:
-	            	 map[i][j] = new Tile(TileType.Test, i * 32, j * 32, 32);
+	            	 map[i][j] = new Tile(TileType.Grass, i * 32, j * 32, 32);
 	            	 break;
 	            case 1:  
 	            	map[i][j] = new Tile(TileType.Test2, i * 32, j * 32, 32);
@@ -57,7 +57,7 @@ public class Chunk {
 	         for (int j = 0; j < map[i].length; j++) {
 	            switch (newMap[i][j]) {
 	            case 0:
-	               map[i][j] = new Tile(TileType.Test, i * 32, j * 32, 32);
+	               map[i][j] = new Tile(TileType.Grass, i * 32, j * 32, 32);
 	               break;
 	            case 1:
 	               map[i][j] = new Tile(TileType.Test2, i * 32, j * 32, 32);

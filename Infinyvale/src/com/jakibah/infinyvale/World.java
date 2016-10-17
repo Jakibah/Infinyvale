@@ -63,7 +63,7 @@ public class World {
 					int towrite = 0;
 					Tile t = ChunktoLoad.map[i][j];
 					switch (t.getType()) {
-					case Test:
+					case Grass:
 						towrite = 0;
 						break;
 					case Test2:

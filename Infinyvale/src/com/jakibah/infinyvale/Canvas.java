@@ -19,6 +19,7 @@ public class Canvas {
 		try {
 			Display.setDisplayMode(new DisplayMode(width, height));
 			Display.setTitle(title);
+			
 			Display.create();
 
 		} catch (LWJGLException e) {
@@ -83,6 +84,7 @@ public class Canvas {
 	}
     //TODO Renew Collision system
 	public static boolean isColliding(int ax, int ay, int ax2, int ay2, int bx, int by, int bx2, int by2) {
+		return false;
 	if(){
 		
 	}

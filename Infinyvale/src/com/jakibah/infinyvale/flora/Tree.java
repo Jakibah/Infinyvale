@@ -33,7 +33,7 @@ public class Tree extends Flora {
 	}
 
 	public void Draw() {
-		Canvas.DrawQuadTex(tex[0], x, y, texturefactor, texturefactor);
+		Canvas.DrawQuadTex(tex[0], x -16, y, texturefactor * 2, texturefactor);
 		Canvas.DrawQuadTex(tex[1], x, y + 32, texturefactor, texturefactor);
 		Canvas.DrawQuadTex(tex[2], x, y + 64, texturefactor, texturefactor);
 	}
