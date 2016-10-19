@@ -15,6 +15,7 @@ public class Player {
 	private boolean running = false;
 	private Inventory i;
 	private Rectangle Collider;
+	public boolean blocknorth = false, blockeast = false, blocksouth = false, blockwest = false; 
 
 	public Player(Texture tex, int x, int y, int texturefactor, int walkspeed,
 			int runspeed) {
@@ -37,29 +38,43 @@ public class Player {
 			running = false;
 			this.setSpeed(this.getWalkspeed());
 		}
+		if(!blocknorth){
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)
 				|| Keyboard.isKeyDown(Keyboard.KEY_UP)) {
 			direction = 0;
 			walking = true;
 			WalkUp();
-		} else if (Keyboard.isKeyDown(Keyboard.KEY_D)
+		}else {
+			walking = false;
+		}
+		}if(!blockeast) {
+		if (Keyboard.isKeyDown(Keyboard.KEY_D)
 				|| Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 			direction = 1;
 			walking = true;
 			WalkRight();
-		} else if (Keyboard.isKeyDown(Keyboard.KEY_S)
+		}else {
+			walking = false;
+		}
+		}if(!blocksouth){
+		if (Keyboard.isKeyDown(Keyboard.KEY_S)
 				|| Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
 			direction = 2;
 			walking = true;
 			WalkDown();
-		} else if (Keyboard.isKeyDown(Keyboard.KEY_A)
+		}else {
+			walking = false;
+		}
+		}if(!blockwest){
+		if (Keyboard.isKeyDown(Keyboard.KEY_A)
 				|| Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
 			direction = 3;
 			walking = true;
 			WalkLeft();
-		} else {
+		}else {
 			walking = false;
 		}
+		} 
 	}
 
 	private void WalkLeft() {

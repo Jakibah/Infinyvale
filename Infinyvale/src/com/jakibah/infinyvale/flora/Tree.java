@@ -52,9 +52,12 @@ public class Tree extends Flora {
 	int debug = 0;
 	public void Collision(){
 		if (this.isSolid()){
-			if(Canvas.isColliding(Game.p.getCollider(), this.getTreeCollider()) || Canvas.isColliding(Game.p.getCollider(), this.getLeafCollider())){
-				System.out.println("Colliding " + debug);
-				debug++;
+			if(Canvas.isColliding(Game.p.getCollider(), this.getTreeCollider())){
+				if(Game.p.getCollider().getX() < this.getTreeCollider().getX() + this.getTreeCollider().getWidth()){
+					System.out.println("colliding from: ");
+				}
+			}else if(Canvas.isColliding(Game.p.getCollider(), this.getLeafCollider())){
+				
 			}
 		}
 	}
