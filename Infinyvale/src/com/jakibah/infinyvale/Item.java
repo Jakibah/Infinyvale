@@ -1,7 +1,7 @@
 package com.jakibah.infinyvale;
 
 import org.lwjgl.input.Keyboard;
-
+import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.opengl.Texture;
 
 import com.jakibah.infinyvale.enums.ItemType;
@@ -14,9 +14,9 @@ public class Item {
 	private int durability;
 	private int power;
 	private Textdrawer td = new Textdrawer("Cardinal");
+	private Rectangle Collider;
 
-	public Item(ItemType type, Texture tex, int x, int y, Chunk w,
-			int texturefactor, int durability, int power) {
+	public Item(ItemType type, Texture tex, int x, int y, Chunk w, int texturefactor, int durability, int power) {
 		this.type = type;
 		this.tex = tex;
 		this.x = y;
@@ -24,7 +24,8 @@ public class Item {
 		this.texturefactor = texturefactor;
 		this.durability = durability;
 		this.power = power;
-		//Game.world.getChunktoLoad().items.add(this);
+		Collider = new Rectangle(x, y, texturefactor, texturefactor);
+		// Game.world.getChunktoLoad().items.add(this);
 	}
 
 	public void Draw() {
@@ -38,31 +39,23 @@ public class Item {
 	}
 
 	public void CheckPickUp() {
-		//TODO implement new collision system
-		if (Canvas.isColliding(Game.p.getX(), Game.p.getY(),
-				Game.p.getX() + 32, Game.p.getY() + 32, this.x + 16,
-				this.y + 16)) {
+		
+		if (Canvas.isColliding(Game.p.getCollider(), this.getCollider())) {
+			//System.out.println("Colliding");
 
-			
 			td.Draw(0, 0, "Press E to pick up.");
 			if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
 				this.ToBag();
 
-			if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
-				this.ToBag();
-				System.out.println("Colliding");
-
 			}
 		}
-	}
 	}
 
 	public void ToBag() {
 		Inventory i = null;
 		i = Game.p.getI();
 		RemoveFromList();
-		i.getInventory().add(
-				new BagItem(type, i, tex, texturefactor, durability, power));
+		i.getInventory().add(new BagItem(type, i, tex, texturefactor, durability, power));
 	}
 
 	public void RemoveFromList() {
@@ -123,6 +116,10 @@ public class Item {
 
 	public void setPower(int power) {
 		this.power = power;
+	}
+
+	public Rectangle getCollider() {
+		return Collider;
 	}
 
 }

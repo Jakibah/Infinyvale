@@ -1,6 +1,9 @@
 package com.jakibah.infinyvale;
 
+
+
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.opengl.Texture;
 
 public class Player {
@@ -11,6 +14,7 @@ public class Player {
 	private boolean walking = false;
 	private boolean running = false;
 	private Inventory i;
+	private Rectangle Collider;
 
 	public Player(Texture tex, int x, int y, int texturefactor, int walkspeed,
 			int runspeed) {
@@ -21,6 +25,8 @@ public class Player {
 		this.walkspeed = walkspeed;
 		this.runspeed = runspeed;
 		speed = this.walkspeed;
+		Collider = new Rectangle(x, y, texturefactor, texturefactor);
+		
 	}
 
 	public void HandleControls() {
@@ -54,8 +60,6 @@ public class Player {
 		} else {
 			walking = false;
 		}
-		// System.out.println("Direction: " + direction + " Walking: " + walking
-		// + " Running: " + running);
 	}
 
 	private void WalkLeft() {
@@ -90,6 +94,7 @@ public class Player {
 	public void Update() {
 		HandleInventory();
 		HandleControls();
+		Collider = new Rectangle(x, y, texturefactor, texturefactor);
 		Draw();
 
 	}
@@ -180,6 +185,10 @@ public class Player {
 
 	public void setI(Inventory i) {
 		this.i = i;
+	}
+
+	public Rectangle getCollider() {
+		return Collider;
 	}
 
 }

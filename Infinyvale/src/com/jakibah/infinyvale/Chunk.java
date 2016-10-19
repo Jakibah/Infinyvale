@@ -86,6 +86,14 @@ public class Chunk {
 	      else
 	         return null;
 	   }
+	   //make settile save able
+	   public void SetTile(int xplace, int yplace, TileType toset) {
+
+		      if (xplace < TilesWide && yplace < TileHeight && xplace > -1
+		            && yplace > -1)
+		          map[xplace][yplace] = new Tile(toset, xplace * 32, yplace * 32, 32);
+		     
+		   }
 
 	   public void Update() {
 	      for (int i = 0; i < map.length; i++) {

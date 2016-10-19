@@ -29,7 +29,7 @@ public class Textdrawer {
 	public void Draw(int x, int y, String text){
 		fontdrawer.drawString(x, y, text);
 	}
-	
+	//FIXME Glitch G0001I
 	public void Draw(int x, int y, String text, Color c){
 		fontdrawer.drawString(x, y, text, c);
 	}

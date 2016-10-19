@@ -1,11 +1,13 @@
 package com.jakibah.infinyvale;
 
+
 import java.io.IOException;
 import java.io.InputStream;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
@@ -19,7 +21,7 @@ public class Canvas {
 		try {
 			Display.setDisplayMode(new DisplayMode(width, height));
 			Display.setTitle(title);
-			
+
 			Display.create();
 
 		} catch (LWJGLException e) {
@@ -82,11 +84,14 @@ public class Canvas {
 		return tex;
 
 	}
-    //TODO Renew Collision system
-	public static boolean isColliding(int ax, int ay, int ax2, int ay2, int bx, int by, int bx2, int by2) {
-		return false;
-	if(){
+
+	
+	public static boolean isColliding(Rectangle a, Rectangle b) {
 		
-	}
+			if (a.intersects(b)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

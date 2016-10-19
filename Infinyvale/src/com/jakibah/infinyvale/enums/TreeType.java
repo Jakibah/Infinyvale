@@ -12,7 +12,7 @@ public enum TreeType {
 	public Texture trunk;
 	public Texture leaves;
 	
-	TreeType(Texture lowertrunk, Texture trunk, Texture leaves) {
+	TreeType(Texture leaves, Texture trunk, Texture lowertrunk) {
 		this.lowertrunk = lowertrunk;
 		this.trunk = trunk;
 		this.leaves = leaves;

@@ -4,14 +4,15 @@ import java.io.IOException;
 
 import org.lwjgl.opengl.Display;
 
+import com.jakibah.infinyvale.enums.ItemType;
 import com.jakibah.infinyvale.enums.TreeType;
 import com.jakibah.infinyvale.flora.Tree;
 
 public class Game {
 
-	static Player p = null;
-	static Inventory i = null;
-	static World world = null;
+	public static Player p = null;
+	public static Inventory i = null;
+	public static World world = null;
 	static Tree t = null;
 	
 
@@ -34,7 +35,7 @@ public class Game {
 			e.printStackTrace();
 		}
 		t = new Tree(TreeType.AppleTree, 150, 136, 32, true, 0, null);
-
+       
 	}
 
 	public static void Update() {
@@ -47,7 +48,7 @@ public class Game {
 		t.Update();
 		
 		p.Update();
-
+        //System.out.println(world.getChunktoLoad().GetTile(0, 0).getX());
 	}
 
 	public static void Stop() {
