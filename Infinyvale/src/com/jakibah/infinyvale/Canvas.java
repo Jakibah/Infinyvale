@@ -1,6 +1,5 @@
 package com.jakibah.infinyvale;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -85,12 +84,37 @@ public class Canvas {
 
 	}
 
-	
 	public static boolean isColliding(Rectangle a, Rectangle b) {
-		
-			if (a.intersects(b)) {
+
+		if (a.intersects(b)) {
 			return true;
-		} else {
+		}
+
+		else {
+			return false;
+		}
+	}
+
+	static int locked = 0;
+
+	public static boolean isColliding(Rectangle a, Rectangle b, boolean solid) {
+		if (a.intersects(b)) {
+			switch(Game.p.getDirection()){
+			case 0:
+				Game.p.setY(Game.p.getY() + Game.p.getSpeed());
+				break;
+			case 1:
+				Game.p.setX(Game.p.getX() - Game.p.getSpeed());
+				break;
+			case 2:
+				Game.p.setY(Game.p.getY() - Game.p.getSpeed());
+				break;
+			case 3:
+				Game.p.setX(Game.p.getX() + Game.p.getSpeed());
+				break;
+			}
+			return true;
+		}else{
 			return false;
 		}
 	}

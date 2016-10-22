@@ -1,7 +1,5 @@
 package com.jakibah.infinyvale;
 
-
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.opengl.Texture;
@@ -15,10 +13,9 @@ public class Player {
 	private boolean running = false;
 	private Inventory i;
 	private Rectangle Collider;
-	public boolean blocknorth = false, blockeast = false, blocksouth = false, blockwest = false; 
+	public boolean blocknorth = false, blockeast = false, blocksouth = false, blockwest = false;
 
-	public Player(Texture tex, int x, int y, int texturefactor, int walkspeed,
-			int runspeed) {
+	public Player(Texture tex, int x, int y, int texturefactor, int walkspeed, int runspeed) {
 		this.tex = tex;
 		this.x = x;
 		this.y = y;
@@ -27,7 +24,7 @@ public class Player {
 		this.runspeed = runspeed;
 		speed = this.walkspeed;
 		Collider = new Rectangle(x, y, texturefactor, texturefactor);
-		
+
 	}
 
 	public void HandleControls() {
@@ -38,43 +35,33 @@ public class Player {
 			running = false;
 			this.setSpeed(this.getWalkspeed());
 		}
-		if(!blocknorth){
-		if (Keyboard.isKeyDown(Keyboard.KEY_W)
-				|| Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-			direction = 0;
-			walking = true;
-			WalkUp();
-		}else {
-			walking = false;
-		}
-		}if(!blockeast) {
-		if (Keyboard.isKeyDown(Keyboard.KEY_D)
-				|| Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-			direction = 1;
-			walking = true;
-			WalkRight();
-		}else {
-			walking = false;
-		}
-		}if(!blocksouth){
-		if (Keyboard.isKeyDown(Keyboard.KEY_S)
-				|| Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-			direction = 2;
-			walking = true;
-			WalkDown();
-		}else {
-			walking = false;
-		}
-		}if(!blockwest){
-		if (Keyboard.isKeyDown(Keyboard.KEY_A)
-				|| Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-			direction = 3;
-			walking = true;
-			WalkLeft();
-		}else {
-			walking = false;
-		}
-		} 
+		
+			if (Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+				direction = 0;
+				walking = true;
+				WalkUp();
+			} 
+		
+			else if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
+				direction = 1;
+				walking = true;
+				WalkRight();
+			} 
+		
+			else if (Keyboard.isKeyDown(Keyboard.KEY_S) || Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
+				direction = 2;
+				walking = true;
+				WalkDown();
+			} 
+		
+			else if (Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
+				direction = 3;
+				walking = true;
+				WalkLeft();
+			}else{
+				walking = false;
+			}
+			//System.out.println(getSpeed());
 	}
 
 	private void WalkLeft() {
@@ -206,4 +193,7 @@ public class Player {
 		return Collider;
 	}
 
+	
+
+	
 }

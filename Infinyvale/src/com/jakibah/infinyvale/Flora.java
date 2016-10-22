@@ -24,6 +24,12 @@ public abstract class Flora {
 	}
 	
 	public void Destroy(){
+		long begin = Time.CurrentSeconds();
+		while(begin + collectime > Time.CurrentSeconds()){
+			Game.world.getChunktoLoad().floratoremove.add(this);
+			//TODO add drops to Flora
+			//TODO add skill effect on tree cutting
+		}
 		
 	}
 	

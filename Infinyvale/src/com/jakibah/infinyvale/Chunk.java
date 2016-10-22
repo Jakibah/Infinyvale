@@ -7,6 +7,8 @@ import org.lwjgl.opengl.Display;
 
 import com.jakibah.infinyvale.enums.ItemType;
 import com.jakibah.infinyvale.enums.TileType;
+import com.jakibah.infinyvale.enums.TreeType;
+import com.jakibah.infinyvale.flora.Tree;
 
 public class Chunk {
 
@@ -14,6 +16,8 @@ public class Chunk {
 	   private int TilesWide, TileHeight;
 	   public ArrayList<Item> items = new ArrayList<Item>();
 	   public ArrayList<Item> itemstoremove = new ArrayList<Item>();
+	   public ArrayList<Flora> flora = new ArrayList<Flora>();
+	   public ArrayList<Flora> floratoremove = new ArrayList<Flora>();
 	   private int ID;
 	   private int[][] newMap;
 
@@ -24,6 +28,8 @@ public class Chunk {
 	      map = new Tile[TilesWide][TileHeight];
 	      Random r = new Random();
 	      //TODO Item in chunk system 
+	      //TODO Flora in chunk System
+	      flora.add(new Tree(TreeType.AppleTree, 150, 138, 32, true, 3, null));
 	      //items.add(new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), r.nextInt(Display.getWidth() - 32), r.nextInt(Display.getHeight() - 32), this, 32, 100, 1));
 	      
 	      for (int i = 0; i < map.length; i++) {
@@ -52,6 +58,7 @@ public class Chunk {
 	      map = new Tile[TilesWide][TileHeight];
 	      Random r = new Random();
 	      //TODO Item in chunk system 
+	      //TODO Flora in chunk System
 	      //items.add(new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), r.nextInt(Display.getWidth() - 32), r.nextInt(Display.getHeight() - 32), this, 32, 100, 1));
 	      for (int i = 0; i < map.length; i++) {
 	         for (int j = 0; j < map[i].length; j++) {
@@ -77,6 +84,15 @@ public class Chunk {
 	         }
 	      }
 	   }
+	   public void HandleFlora() {
+		      flora.removeAll(floratoremove);
+		      floratoremove.clear();
+		      if (!flora.isEmpty()) {
+		         for (Flora i : flora) {
+		            i.Update();
+		         }
+		      }
+		   }
 
 	   public Tile GetTile(int xplace, int yplace) {
 
@@ -103,6 +119,7 @@ public class Chunk {
 	         }
 	      }
 	      HandleItems();
+	      HandleFlora();
 	   }
 
 	   public Tile[][] getMap() {

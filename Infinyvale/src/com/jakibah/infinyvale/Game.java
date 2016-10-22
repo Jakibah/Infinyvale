@@ -13,7 +13,7 @@ public class Game {
 	public static Player p = null;
 	public static Inventory i = null;
 	public static World world = null;
-	static Tree t = null;
+	
 	
 
 	public static void main(String[] args) {
@@ -34,8 +34,8 @@ public class Game {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		t = new Tree(TreeType.AppleTree, 150, 136, 32, true, 0, null);
-       
+		
+	
 	}
 
 	public static void Update() {
@@ -45,15 +45,18 @@ public class Game {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		t.Update();
+		
 		
 		p.Update();
+		//System.out.println(Time.CurrentSeconds());
         //System.out.println(world.getChunktoLoad().GetTile(0, 0).getX());
 	}
 
 	public static void Stop() {
+		//FIXME stop auto world reset
+		world.getFile().delete();
 		System.out.println("Stopping...");
-
+       
 	}
 
 }

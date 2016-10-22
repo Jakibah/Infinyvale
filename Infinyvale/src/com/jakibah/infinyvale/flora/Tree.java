@@ -3,6 +3,7 @@ package com.jakibah.infinyvale.flora;
 
 
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.opengl.Texture;
 
@@ -10,6 +11,7 @@ import com.jakibah.infinyvale.Canvas;
 import com.jakibah.infinyvale.Flora;
 import com.jakibah.infinyvale.Game;
 import com.jakibah.infinyvale.Item;
+import com.jakibah.infinyvale.Textdrawer;
 import com.jakibah.infinyvale.enums.TreeType;
 
 public class Tree extends Flora {
@@ -17,6 +19,7 @@ public class Tree extends Flora {
 	private Texture[] tex;
 	private Rectangle TreeCollider;
 	private Rectangle LeafCollider;
+	private Textdrawer td = new Textdrawer("Cardinal");
 
 	public Tree(TreeType type, int x, int y, int texturefactor, boolean solid, int collecttime,
 			Item drop) {
@@ -52,10 +55,12 @@ public class Tree extends Flora {
 	int debug = 0;
 	public void Collision(){
 		if (this.isSolid()){
-			if(Canvas.isColliding(Game.p.getCollider(), this.getTreeCollider())){
-				
-				
-			}else if(Canvas.isColliding(Game.p.getCollider(), this.getLeafCollider())){
+			if(Canvas.isColliding(Game.p.getCollider(), this.getTreeCollider(), true)){
+				td.Draw(0, 0, "Press E to cut down.");
+				if(Keyboard.isKeyDown(Keyboard.KEY_E)){
+					Destroy();
+				}
+				}else if(Canvas.isColliding(Game.p.getCollider(), this.getLeafCollider(), true)){
 				
 			}
 		}
