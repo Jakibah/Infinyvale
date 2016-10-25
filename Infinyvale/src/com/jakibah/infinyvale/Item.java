@@ -16,7 +16,7 @@ public class Item {
 	private Textdrawer td = new Textdrawer("Cardinal");
 	private Rectangle Collider;
 
-	public Item(ItemType type, Texture tex, int x, int y, Chunk w, int texturefactor, int durability, int power) {
+	public Item(ItemType type, Texture tex, int x, int y, int texturefactor, int durability, int power) {
 		this.type = type;
 		this.tex = tex;
 		this.x = y;
@@ -24,8 +24,8 @@ public class Item {
 		this.texturefactor = texturefactor;
 		this.durability = durability;
 		this.power = power;
-		Collider = new Rectangle(x, y, texturefactor, texturefactor);
-		// Game.world.getChunktoLoad().items.add(this);
+		Collider = new Rectangle(x - 14, y, texturefactor, texturefactor);
+		Game.world.getChunktoLoad().items.add(this);
 	}
 
 	public void Draw() {

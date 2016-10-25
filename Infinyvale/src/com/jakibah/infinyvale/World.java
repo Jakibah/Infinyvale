@@ -72,7 +72,7 @@ public class World {
 
 					}
 					worldwriter.write(towrite + ", ");
-					System.out.println("Loading new Chunk");
+					//System.out.println("Loading new Chunk");
 				}
 			}
 			First = false;

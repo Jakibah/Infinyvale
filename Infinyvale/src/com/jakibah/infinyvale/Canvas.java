@@ -19,6 +19,7 @@ public class Canvas {
 
 		try {
 			Display.setDisplayMode(new DisplayMode(width, height));
+			//Display.setFullscreen(true);
 			Display.setTitle(title);
 
 			Display.create();
@@ -36,13 +37,13 @@ public class Canvas {
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		Game.Start();
+		Main.Start();
 		while (!Display.isCloseRequested()) {
 			Display.update();
 			Display.sync(fps);
-			Game.Update();
+			Main.Update();
 		}
-		Game.Stop();
+		Main.Stop();
 		Display.destroy();
 		System.exit(0);
 	}
@@ -50,7 +51,6 @@ public class Canvas {
 	public static void DrawQuadTex(Texture tex, float x, float y, float width, float height) {
 		tex.bind();
 		glTranslatef(x, y, 0);
-		// GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 0);
 		glVertex2f(0, 0);

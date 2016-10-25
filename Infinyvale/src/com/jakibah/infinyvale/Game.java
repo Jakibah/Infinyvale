@@ -3,6 +3,7 @@ package com.jakibah.infinyvale;
 import java.io.IOException;
 
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
 
 import com.jakibah.infinyvale.enums.ItemType;
 import com.jakibah.infinyvale.enums.TreeType;
@@ -10,16 +11,16 @@ import com.jakibah.infinyvale.flora.Tree;
 
 public class Game {
 
+	
+
 	public static Player p = null;
 	public static Inventory i = null;
 	public static World world = null;
+	public static Item item = null;
 	
 	
 
-	public static void main(String[] args) {
-		Canvas.CreateCanvas(640, 480, "Infinyvale", 60);
-
-	}
+	
 
 	public static void Start() {
 		System.out.println("Starting...");
@@ -35,6 +36,18 @@ public class Game {
 			e.printStackTrace();
 		}
 		
+		try {
+			world.Update();
+			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		item = new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), 150, 136, 32, 100, 3);
+		
+		
 	
 	}
 
@@ -48,6 +61,7 @@ public class Game {
 		
 		
 		p.Update();
+		
 		//System.out.println(Time.CurrentSeconds());
         //System.out.println(world.getChunktoLoad().GetTile(0, 0).getX());
 	}

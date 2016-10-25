@@ -2,10 +2,15 @@ package com.jakibah.infinyvale;
 
 import java.util.ArrayList;
 
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.Display;
+
 public class Inventory {
 	private ArrayList<BagItem> inventory;
 	private Player p;
 	private BagItem equiped;
+	private boolean open = false;
+	private boolean Idown = false;
 
 	public Inventory(Player p) {
 		this.p = p;
@@ -14,10 +19,25 @@ public class Inventory {
 	}
 
 	public void Update() {
+		//Draw();
 		if (inventory.isEmpty()) {
-			// i do nothing
+
 		} else {
 			setEquiped(inventory.get(0));
+
+		}
+
+	}
+
+	int columns = 6;
+	int rows = 5;
+	int[][] inventorygui = new int[rows][columns];
+
+	public void Draw() {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < inventorygui[i].length; j++) {
+				Canvas.DrawQuadTex(Canvas.QuickLoad("itemholder32"), i * 32, j * 32, 32, 32);
+			}
 		}
 	}
 

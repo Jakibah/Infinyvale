@@ -29,7 +29,7 @@ public class Chunk {
 	      Random r = new Random();
 	      //TODO Item in chunk system 
 	      //TODO Flora in chunk System
-	      flora.add(new Tree(TreeType.AppleTree, 150, 138, 32, true, 3, null));
+	      //flora.add(new Tree(TreeType.AppleTree, 150, 138, 32, true, 3, null));
 	      //items.add(new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), r.nextInt(Display.getWidth() - 32), r.nextInt(Display.getHeight() - 32), this, 32, 100, 1));
 	      
 	      for (int i = 0; i < map.length; i++) {
