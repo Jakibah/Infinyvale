@@ -6,7 +6,7 @@ import com.jakibah.infinyvale.Canvas;
 
 public enum TreeType {
 	
-	AppleTree(Canvas.QuickLoad("appletreeleaves3264"), Canvas.QuickLoad("appletreetrunk32"), Canvas.QuickLoad("appletreelowertrunk32"));
+	AppleTree(Canvas.QuickLoad("flora/appletree/appletreeleaves"), Canvas.QuickLoad("flora/appletree/appletreetrunk"), Canvas.QuickLoad("flora/appletree/appletreelowertrunk"));
 	
 	public Texture lowertrunk;
 	public Texture trunk;

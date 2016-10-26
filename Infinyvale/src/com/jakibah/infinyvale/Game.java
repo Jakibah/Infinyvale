@@ -16,7 +16,7 @@ public class Game {
 	public static Player p = null;
 	public static Inventory i = null;
 	public static World world = null;
-	public static Item item = null;
+	//public static Item item = null;
 	
 	
 
@@ -24,7 +24,7 @@ public class Game {
 
 	public static void Start() {
 		System.out.println("Starting...");
-		p = new Player(Canvas.QuickLoad("testplayer32"),
+		p = new Player(Canvas.QuickLoad("character/testplayer"),
 				(Display.getWidth() / 2) - 16, (Display.getHeight() / 2) - 32,
 				32, 2, 4);
 		
@@ -45,7 +45,7 @@ public class Game {
 		
 		
 		
-		item = new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), 150, 136, 32, 100, 3);
+		//item = new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), 150, 136, 32, 100, 3);
 		
 		
 	

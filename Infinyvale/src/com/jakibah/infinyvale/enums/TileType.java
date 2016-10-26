@@ -6,7 +6,7 @@ import com.jakibah.infinyvale.Canvas;
 
 public enum TileType {
 
-	Test2(Canvas.QuickLoad("test2tile32"), false), Grass(Canvas.QuickLoad("grass32"), false);
+	Test2(Canvas.QuickLoad("tiles/test2tile"), false), Grass(Canvas.QuickLoad("tiles/grass"), false);
 	
 
 	public Texture tex;
