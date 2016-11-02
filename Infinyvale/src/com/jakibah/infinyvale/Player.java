@@ -93,7 +93,14 @@ public class Player {
 		this.getI().Update();
 	}
 
+	public void HandleItemUse(){
+		if(this.getI().getEquiped() != null){
+		   if(Keyboard.isKeyDown(Keyboard.KEY_Q))
+			this.getI().getEquiped().Use();
+		}
+	}
 	public void Update() {
+		HandleItemUse();
 		HandleInventory();
 		HandleControls();
 		Collider = new Rectangle(x, y, texturefactor, texturefactor);

@@ -16,7 +16,8 @@ public class Game {
 	public static Player p = null;
 	public static Inventory i = null;
 	public static World world = null;
-	//public static Item item = null;
+	public static Item item = null;
+	public static Item item2 = null;
 	
 	
 
@@ -45,14 +46,15 @@ public class Game {
 		
 		
 		
-		//item = new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), 150, 136, 32, 100, 3);
+		item2 = new Item(ItemType.Weapon, Canvas.QuickLoad("tiles/test2tile"), 150, 142, 32, 100, 3);
+		item = new Item(ItemType.Weapon, Canvas.QuickLoad("items/testitem"), 360, 420, 32, 100, 3);
 		
 		
 	
 	}
 
 	public static void Update() {
-
+        
 		try {
 			world.Update();
 		} catch (IOException e) {

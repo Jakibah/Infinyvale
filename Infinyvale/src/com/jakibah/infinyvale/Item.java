@@ -19,12 +19,12 @@ public class Item {
 	public Item(ItemType type, Texture tex, int x, int y, int texturefactor, int durability, int power) {
 		this.type = type;
 		this.tex = tex;
-		this.x = y;
+		this.x = x;
 		this.y = y;
 		this.texturefactor = texturefactor;
 		this.durability = durability;
 		this.power = power;
-		Collider = new Rectangle(x - 14, y, texturefactor, texturefactor);
+		Collider = new Rectangle(x, y, texturefactor, texturefactor);
 		Game.world.getChunktoLoad().items.add(this);
 	}
 
@@ -55,7 +55,7 @@ public class Item {
 		Inventory i = null;
 		i = Game.p.getI();
 		RemoveFromList();
-		i.getInventory().add(new BagItem(type, i, tex, texturefactor, durability, power));
+		i.Add(new BagItem(type, i, tex, texturefactor, durability, power));
 	}
 
 	public void RemoveFromList() {

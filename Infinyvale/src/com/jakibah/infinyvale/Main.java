@@ -2,7 +2,7 @@ package com.jakibah.infinyvale;
 
 public class Main {
 	
-	public static String state = "Menu";
+	public static String state = "Game";
 
 	public static void main(String[] args) {
 		Canvas.CreateCanvas(640, 480, "Infinyvale", 60);

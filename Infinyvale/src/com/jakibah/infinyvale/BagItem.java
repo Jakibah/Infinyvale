@@ -15,6 +15,7 @@ public class BagItem {
 
 	public BagItem(ItemType type, Inventory i, Texture tex, int texturefactor,
 			int durability, int power) {
+		this.i = i;
 		this.type = type;
 		this.tex = tex;
 		this.texturefactor = texturefactor;
@@ -34,11 +35,13 @@ public class BagItem {
 
 	public void Use() {
 		this.setDurability(this.getDurability() - 1);
+		System.out.println("Used Item durability is now: " + this.getDurability());
 		// override me
 	}
 
 	public void Destroy() {
-		this.getI().getInventory().remove(this);
+		this.getI().Remove(this);
+		System.out.println("Destroyed equiped");
 		// override me
 	}
 
