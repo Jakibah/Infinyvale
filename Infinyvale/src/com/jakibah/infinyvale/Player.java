@@ -1,6 +1,7 @@
 package com.jakibah.infinyvale;
 
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.opengl.Texture;
 
@@ -14,6 +15,7 @@ public class Player {
 	private Inventory i;
 	private Rectangle Collider;
 	public boolean blocknorth = false, blockeast = false, blocksouth = false, blockwest = false;
+	private boolean click0down = false;
 
 	public Player(Texture tex, int x, int y, int texturefactor, int walkspeed, int runspeed) {
 		this.tex = tex;
@@ -35,33 +37,33 @@ public class Player {
 			running = false;
 			this.setSpeed(this.getWalkspeed());
 		}
-		
-			if (Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-				direction = 0;
-				walking = true;
-				WalkUp();
-			} 
-		
-			else if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-				direction = 1;
-				walking = true;
-				WalkRight();
-			} 
-		
-			else if (Keyboard.isKeyDown(Keyboard.KEY_S) || Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-				direction = 2;
-				walking = true;
-				WalkDown();
-			} 
-		
-			else if (Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-				direction = 3;
-				walking = true;
-				WalkLeft();
-			}else{
-				walking = false;
-			}
-			//System.out.println(getSpeed());
+
+		if (Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+			direction = 0;
+			walking = true;
+			WalkUp();
+		}
+
+		else if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
+			direction = 1;
+			walking = true;
+			WalkRight();
+		}
+
+		else if (Keyboard.isKeyDown(Keyboard.KEY_S) || Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
+			direction = 2;
+			walking = true;
+			WalkDown();
+		}
+
+		else if (Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
+			direction = 3;
+			walking = true;
+			WalkLeft();
+		} else {
+			walking = false;
+		}
+		// System.out.println(getSpeed());
 	}
 
 	private void WalkLeft() {
@@ -93,13 +95,20 @@ public class Player {
 		this.getI().Update();
 	}
 
-	public void HandleItemUse(){
-		if(this.getI().getEquiped() != null){
-		   if(Keyboard.isKeyDown(Keyboard.KEY_Q))
-			this.getI().getEquiped().Use();
+	public void HandleItemUse() {
+		if (this.getI().getEquiped() != null) {
+			if (!click0down && Mouse.isButtonDown(0)) {
+				click0down = true;
+				this.getI().getEquiped().Use();
+			}
 		}
 	}
+
 	public void Update() {
+		if (!Mouse.isButtonDown(0)) {
+
+			click0down = false;
+		}
 		HandleItemUse();
 		HandleInventory();
 		HandleControls();
@@ -200,7 +209,4 @@ public class Player {
 		return Collider;
 	}
 
-	
-
-	
 }

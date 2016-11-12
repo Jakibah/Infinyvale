@@ -19,7 +19,7 @@ public class Tree extends Flora {
 	private Texture[] tex;
 	private Rectangle TreeCollider;
 	private Rectangle LeafCollider;
-	private Textdrawer td = new Textdrawer("Cardinal");
+	private Textdrawer td = Game.Cardinal;
 
 	public Tree(TreeType type, int x, int y, int texturefactor, boolean solid, int collecttime,
 			Item drop) {

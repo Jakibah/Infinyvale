@@ -1,40 +1,56 @@
 package com.jakibah.infinyvale;
 
-import java.util.ArrayList;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
 public class Inventory {
 
-	int columns = 10;
-	int rows = 6;
-	private Player p;
+	private BagItem[] inventory = new BagItem[60];
 	private BagItem equiped;
 	private boolean open = false;
 	private boolean keydown = false;
-	private BagItem[][] inventory = new BagItem[columns][rows];
-	
-	
+	private Player p;
+
 	public Inventory(Player p) {
-		
 		this.p = p;
 		p.setI(this);
 	}
 
-	public void Update() {
-		for(int i = 0; i < inventory.length; i++){
-			for(int j = 0; j < inventory[i].length; j++){
-				if(inventory[i][j] != null){
-					inventory[i][j].Update();
+	public void Remove(BagItem bagItem) {
+		for (int i = 0; i < inventory.length; i++) {
+			if (inventory[i] == bagItem) {
+				inventory[i] = null;
+				for(int j = 0; j < inventory.length; j++){
+					if(j+1 < 60){
+					inventory[j] = inventory[j + 1];
+					inventory[j + 1] = null;
 				}
+				}
+				break;
 			}
+		}
+
+	}
+
+	public void Add(BagItem bagItem) {
+		for (int i = 0; i < inventory.length; i++) {
+			if (inventory[i] == null) {
+				inventory[i] = bagItem;
+				break;
 			}
-		
-		if (inventory[0][0] == null) {
-            inventory[0][0] = null;
-		} else {
-			setEquiped(inventory[0][0]);
+		}
+
+	}
+
+	public void Update() {
+		if (inventory[0] != null) {
+			setEquiped(inventory[0]);
+
+		}
+		for (BagItem i : inventory) {
+			if (i != null) {
+				i.Update();
+			}
 
 		}
 		if (!keydown && Keyboard.isKeyDown(Keyboard.KEY_I)) {
@@ -45,75 +61,55 @@ public class Inventory {
 
 			keydown = false;
 		}
-       
+
 		while (open) {
-			
+
 			Display.update();
 			Draw();
-				if (!keydown && Keyboard.isKeyDown(Keyboard.KEY_I)) {
-					keydown = true;
-					open = false;
-				}
-				if (!Keyboard.isKeyDown(Keyboard.KEY_I)) {
-					keydown = false;
-					
-				}
-				
-				
+			if (!keydown && Keyboard.isKeyDown(Keyboard.KEY_I)) {
+				keydown = true;
+				open = false;
 			}
-		
+			if (!Keyboard.isKeyDown(Keyboard.KEY_I)) {
+				keydown = false;
 
-		
+			}
+
+		}
+
 	}
 
-	public void Add(BagItem ToAdd){
-		outerloop:
-		for(int i = 0; i < inventory.length; i++){
-			for(int j = 0; j < inventory[i].length; j++){
-				if(inventory[i][j] == null){
-					inventory[i][j] = ToAdd;
-					break outerloop;
-				
-				
-				}
-			}
-		}
+	private void setEquiped(BagItem bagItem) {
+		this.equiped = bagItem;
+
 	}
-	public void Remove(BagItem ToRemove){
-		outerloop:
-		for(int i = 0; i < inventory.length; i++){
-			for(int j = 0; j < inventory[i].length; j++){
-				if(inventory[i][j] == ToRemove){
-					inventory[i][j] = null;
-					inventory[i][j] = inventory[i][j + 1];
-					inventory[i][j + 1] = null;
-					break outerloop;
-				
-				
-				}
-			}
-		}
-	}
-	
-	
 
 	public void Draw() {
-		for (int i = 0; i < columns; i++) {
-			for (int j = 0; j < rows; j++) {
+        int drawtime = 0;
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 6; j++) {
+				
 				Canvas.DrawQuadTex(Canvas.QuickLoad("inventory/itemholder"), Display.getWidth() / 4 + i * 32, Display.getHeight() / 4 + j * 32, 32, 32);
-				if(inventory[i][j] != null){
-					Canvas.DrawQuadTex(inventory[i][j].getTex(), Display.getWidth() / 4 + i * 32, Display.getHeight() / 4 + j * 32, inventory[i][j].getTexturefactor(), inventory[i][j].getTexturefactor());
+				if(inventory[drawtime] != null){
+					Canvas.DrawQuadTex(inventory[drawtime].getTex(), Display.getWidth() / 4 + i * 32, Display.getHeight() / 4 + j * 32, 32, 32);
+				    //System.out.println("drawn: " + drawtime);
 				}
+				drawtime ++;
+				//System.out.println(drawtime);
 			}
 		}
-		Canvas.DrawQuadTex(Canvas.QuickLoad("inventory/itemholder"), Display.getWidth() / 4 * 3, Display.getHeight() / 4, columns * 32 / 2, rows  * 32);
+
 	}
 
-	public BagItem[][] getInventory() {
+	public BagItem getEquiped() {
+		return equiped;
+	}
+
+	public BagItem[] getInventory() {
 		return inventory;
 	}
 
-	public void setInventory(BagItem[][] inventory) {
+	public void setInventory(BagItem[] inventory) {
 		this.inventory = inventory;
 	}
 
@@ -123,14 +119,6 @@ public class Inventory {
 
 	public void setP(Player p) {
 		this.p = p;
-	}
-
-	public BagItem getEquiped() {
-		return equiped;
-	}
-
-	public void setEquiped(BagItem equiped) {
-		this.equiped = equiped;
 	}
 
 }

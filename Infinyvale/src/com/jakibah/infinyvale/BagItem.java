@@ -28,7 +28,7 @@ public class BagItem {
 	}
 
 	public void DurabilityCheck() {
-		if (this.getDurability() <= 0) {
+		if (this.getDurability() < 1) {
 			Destroy();
 		}
 	}

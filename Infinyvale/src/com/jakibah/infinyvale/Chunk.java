@@ -7,8 +7,7 @@ import org.lwjgl.opengl.Display;
 
 import com.jakibah.infinyvale.enums.ItemType;
 import com.jakibah.infinyvale.enums.TileType;
-import com.jakibah.infinyvale.enums.TreeType;
-import com.jakibah.infinyvale.flora.Tree;
+import com.jakibah.infinyvale.lists.Items;
 
 public class Chunk {
 
@@ -31,7 +30,7 @@ public class Chunk {
 	      //TODO Flora in chunk System
 	      //flora.add(new Tree(TreeType.AppleTree, 150, 138, 32, true, 3, null));
 	      //items.add(new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), r.nextInt(Display.getWidth() - 32), r.nextInt(Display.getHeight() - 32), this, 32, 100, 1));
-	      
+	      items.add(new Item("HealPotion", Canvas.QuickLoad("items/healpotion"), 150, 142, 32));
 	      for (int i = 0; i < map.length; i++) {
 	         for (int j = 0; j < map[i].length; j++) {
 	            //TODO map generation

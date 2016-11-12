@@ -5,27 +5,24 @@ import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.opengl.Texture;
 
 import com.jakibah.infinyvale.enums.ItemType;
+import com.jakibah.infinyvale.lists.Items;
 
 public class Item {
-	private ItemType type;
 	private Texture tex;
 	private int x, y;
 	private int texturefactor;
-	private int durability;
-	private int power;
-	private Textdrawer td = new Textdrawer("Cardinal");
+	private String name;
+	private Textdrawer td = Game.Cardinal;
 	private Rectangle Collider;
+	
 
-	public Item(ItemType type, Texture tex, int x, int y, int texturefactor, int durability, int power) {
-		this.type = type;
+	public Item(String name, Texture tex, int x, int y, int texturefactor) {
 		this.tex = tex;
+		this.name = name;
 		this.x = x;
 		this.y = y;
 		this.texturefactor = texturefactor;
-		this.durability = durability;
-		this.power = power;
 		Collider = new Rectangle(x, y, texturefactor, texturefactor);
-		Game.world.getChunktoLoad().items.add(this);
 	}
 
 	public void Draw() {
@@ -39,36 +36,34 @@ public class Item {
 	}
 
 	public void CheckPickUp() {
+		Inventory i = null;
+		i = Game.p.getI();
 		
-		if (Canvas.isColliding(Game.p.getCollider(), this.getCollider())) {
-			//System.out.println("Colliding");
-
-			td.Draw(0, 0, "Press E to pick up.");
-			if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
-				this.ToBag();
-
+			if (Canvas.isColliding(Game.p.getCollider(), this.getCollider())) {
+				// System.out.println("Colliding");
+				if (i.getInventory()[59] == null) {
+				td.Draw(0, 0, "Press E to pick up.");
+				if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
+					this.ToBag();
+				}
+			}else{
+				td.Draw(0, 0, "Inventory is full.");
 			}
-		}
+		} 
 	}
 
 	public void ToBag() {
 		Inventory i = null;
 		i = Game.p.getI();
 		RemoveFromList();
-		i.Add(new BagItem(type, i, tex, texturefactor, durability, power));
+		i.Add(Items.get(this.getName()));
 	}
 
 	public void RemoveFromList() {
 		Game.world.getChunktoLoad().itemstoremove.add(this);
 	}
 
-	public ItemType getType() {
-		return type;
-	}
-
-	public void setType(ItemType type) {
-		this.type = type;
-	}
+	
 
 	public Texture getTex() {
 		return tex;
@@ -102,24 +97,16 @@ public class Item {
 		this.texturefactor = texturefactor;
 	}
 
-	public int getDurability() {
-		return durability;
-	}
-
-	public void setDurability(int durability) {
-		this.durability = durability;
-	}
-
-	public int getPower() {
-		return power;
-	}
-
-	public void setPower(int power) {
-		this.power = power;
-	}
-
 	public Rectangle getCollider() {
 		return Collider;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String nametoset) {
+		name = nametoset;
 	}
 
 }
