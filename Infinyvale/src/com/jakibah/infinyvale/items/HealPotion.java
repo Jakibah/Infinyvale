@@ -24,7 +24,7 @@ public class HealPotion extends BagItem{
 	@Override
 	public void Destroy(){
 		super.Destroy();
-		//TODO Heal Player
+		Game.p.Heal(getPower());
 		System.out.println("healed: " + this.getPower() + " hearts");
 	}
 	

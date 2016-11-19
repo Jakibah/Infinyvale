@@ -2,6 +2,7 @@ package com.jakibah.infinyvale;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.opengl.Texture;
 
@@ -16,17 +17,37 @@ public class Player {
 	private Rectangle Collider;
 	public boolean blocknorth = false, blockeast = false, blocksouth = false, blockwest = false;
 	private boolean click0down = false;
+	private int Health;
+	private int maxHealth;
+	private Texture EmptyHeart, Heart;
 
-	public Player(Texture tex, int x, int y, int texturefactor, int walkspeed, int runspeed) {
+	public Player(Texture tex, int x, int y, int texturefactor, int walkspeed, int runspeed, int health, int maxhealth) {
 		this.tex = tex;
 		this.x = x;
 		this.y = y;
+		this.setHealth(health);
+		this.setMaxHealth(maxhealth);
 		this.texturefactor = texturefactor;
 		this.walkspeed = walkspeed;
 		this.runspeed = runspeed;
 		speed = this.walkspeed;
 		Collider = new Rectangle(x, y, texturefactor, texturefactor);
+		EmptyHeart = Canvas.QuickLoad("gui/emptyheart");
+		Heart = Canvas.QuickLoad("gui/heart");
 
+	}
+	
+	public void DrawHealth(){
+	  
+		for(int i = 0; i < maxHealth; i++){
+			Canvas.DrawQuadTex(EmptyHeart, i * 35, 4, 32, 32);
+			}
+		for(int i = 0; i < Health; i++){
+			Canvas.DrawQuadTex(Heart, i * 35, 4, 32, 32);
+	   
+		}
+		
+		
 	}
 
 	public void HandleControls() {
@@ -88,6 +109,7 @@ public class Player {
 
 	public void Draw() {
 		Canvas.DrawQuadTex(tex, x, y, texturefactor, texturefactor);
+		DrawHealth();
 		// System.out.println("Drawing player");
 	}
 
@@ -112,14 +134,24 @@ public class Player {
 		HandleItemUse();
 		HandleInventory();
 		HandleControls();
+		HandleHealth();
 		Collider = new Rectangle(x, y, texturefactor, texturefactor);
 		Draw();
 
 	}
 
+	private void HandleHealth() {
+		//TODO add death
+		if(Health > maxHealth){
+			Health = maxHealth;
+		}
+		
+	}
+
 	public Texture getTex() {
 		return tex;
 	}
+	
 
 	public void setTex(Texture tex) {
 		this.tex = tex;
@@ -207,6 +239,28 @@ public class Player {
 
 	public Rectangle getCollider() {
 		return Collider;
+	}
+
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+
+	public int getHealth() {
+		return Health;
+	}
+
+	public void setHealth(int health) {
+		Health = health;
+	}
+	public void Damage(int damage){
+		Health = Health - damage;
+	}
+	public void Heal(int heal){
+		Health = Health + heal;
 	}
 
 }

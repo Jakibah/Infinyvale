@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
+import com.jakibah.infinyvale.debug.Debug;
+
 public class Game {
 
 	
@@ -21,9 +23,10 @@ public class Game {
 
 	public static void Start() {
 		System.out.println("Starting...");
+		//TODO set health from save
 		p = new Player(Canvas.QuickLoad("character/testplayer"),
 				(Display.getWidth() / 2) - 16, (Display.getHeight() / 2) - 32,
-				32, 2, 12);
+				32, 2, 4, 3, 5);
 		
 		i = new Inventory(p);
 
@@ -50,7 +53,7 @@ public class Game {
 	}
 
 	public static void Update() {
-        
+        Debug.Update();
 		try {
 			world.Update();
 		} catch (IOException e) {

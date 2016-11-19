@@ -5,9 +5,7 @@ import java.util.Random;
 
 import org.lwjgl.opengl.Display;
 
-import com.jakibah.infinyvale.enums.ItemType;
 import com.jakibah.infinyvale.enums.TileType;
-import com.jakibah.infinyvale.lists.Items;
 
 public class Chunk {
 

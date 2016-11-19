@@ -2,6 +2,9 @@ package com.jakibah.infinyvale;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
+import org.newdawn.slick.opengl.Texture;
+
+import com.jakibah.infinyvale.debug.Debug;
 
 public class Inventory {
 
@@ -10,10 +13,12 @@ public class Inventory {
 	private boolean open = false;
 	private boolean keydown = false;
 	private Player p;
+	private Texture itemholder;
 
 	public Inventory(Player p) {
 		this.p = p;
 		p.setI(this);
+		itemholder = Canvas.QuickLoad("inventory/itemholder");
 	}
 
 	public void Remove(BagItem bagItem) {
@@ -65,6 +70,7 @@ public class Inventory {
 		while (open) {
 
 			Display.update();
+			Debug.Update();
 			Draw();
 			if (!keydown && Keyboard.isKeyDown(Keyboard.KEY_I)) {
 				keydown = true;
@@ -89,16 +95,16 @@ public class Inventory {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 6; j++) {
 				
-				Canvas.DrawQuadTex(Canvas.QuickLoad("inventory/itemholder"), Display.getWidth() / 4 + i * 32, Display.getHeight() / 4 + j * 32, 32, 32);
+				Canvas.DrawQuadTex(itemholder, Display.getWidth() / 4 + i * 32, Display.getHeight() / 4 + j * 32, 32, 32);
 				if(inventory[drawtime] != null){
 					Canvas.DrawQuadTex(inventory[drawtime].getTex(), Display.getWidth() / 4 + i * 32, Display.getHeight() / 4 + j * 32, 32, 32);
 				    //System.out.println("drawn: " + drawtime);
 				}
 				drawtime ++;
 				//System.out.println(drawtime);
+				//41357976
 			}
 		}
-
 	}
 
 	public BagItem getEquiped() {

@@ -4,7 +4,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.opengl.Texture;
 
-import com.jakibah.infinyvale.enums.ItemType;
 import com.jakibah.infinyvale.lists.Items;
 
 public class Item {
