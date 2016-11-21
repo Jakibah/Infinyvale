@@ -6,6 +6,7 @@ import java.util.Random;
 import org.lwjgl.opengl.Display;
 
 import com.jakibah.infinyvale.enums.TileType;
+import com.jakibah.infinyvale.monsters.Wasp;
 
 public class Chunk {
 
@@ -15,6 +16,8 @@ public class Chunk {
 	   public ArrayList<Item> itemstoremove = new ArrayList<Item>();
 	   public ArrayList<Flora> flora = new ArrayList<Flora>();
 	   public ArrayList<Flora> floratoremove = new ArrayList<Flora>();
+	   public ArrayList<Monster> monster = new ArrayList<Monster>();
+	   public ArrayList<Monster> monstertoremove = new ArrayList<Monster>();
 	   private int ID;
 	   private int[][] newMap;
 
@@ -26,9 +29,12 @@ public class Chunk {
 	      Random r = new Random();
 	      //TODO Item in chunk system 
 	      //TODO Flora in chunk System
+	      //TODO Monster in chunk system
 	      //flora.add(new Tree(TreeType.AppleTree, 150, 138, 32, true, 3, null));
 	      //items.add(new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), r.nextInt(Display.getWidth() - 32), r.nextInt(Display.getHeight() - 32), this, 32, 100, 1));
-	      items.add(new Item("HealPotion", Canvas.QuickLoad("items/healpotion"), 150, 142, 32));
+	      //items.add(new Item("HealPotion", Canvas.QuickLoad("items/healpotion"), 150, 142, 32));
+	      //monster.add(new Wasp(null, 142, 150, 0, 0, 0, null));
+	      
 	      for (int i = 0; i < map.length; i++) {
 	         for (int j = 0; j < map[i].length; j++) {
 	            //TODO map generation
@@ -56,7 +62,7 @@ public class Chunk {
 	      Random r = new Random();
 	      //TODO Item in chunk system 
 	      //TODO Flora in chunk System
-	      //items.add(new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"), r.nextInt(Display.getWidth() - 32), r.nextInt(Display.getHeight() - 32), this, 32, 100, 1));
+	      //TODO Monster in chunk system
 	      for (int i = 0; i < map.length; i++) {
 	         for (int j = 0; j < map[i].length; j++) {
 	            switch (newMap[i][j]) {
@@ -90,6 +96,15 @@ public class Chunk {
 		         }
 		      }
 		   }
+	   public void HandleMonster(){
+		   monster.removeAll(monstertoremove);
+		   monstertoremove.clear();
+		   if(!monster.isEmpty()){
+			   for(Monster i : monster){
+				   i.Update();
+			   }
+		   }
+	   }
 
 	   public Tile GetTile(int xplace, int yplace) {
 
@@ -117,6 +132,7 @@ public class Chunk {
 	      }
 	      HandleItems();
 	      HandleFlora();
+	      HandleMonster();
 	   }
 
 	   public Tile[][] getMap() {

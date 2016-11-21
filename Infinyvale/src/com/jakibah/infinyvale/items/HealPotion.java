@@ -15,7 +15,6 @@ public class HealPotion extends BagItem{
 		this.setType(ItemType.Consumable);
 		this.setI(Game.p.getI());
 		this.setTex(Canvas.QuickLoad("items/healpotion"));
-		//this.setTex(Canvas.QuickLoad("items/testitem"));
 		this.setTexturefactor(32);
 		this.setDurability(1);
 		this.setPower(3);

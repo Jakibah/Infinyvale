@@ -29,6 +29,7 @@ public class Item {
 	}
 
 	public void Update() {
+		//System.out.println(Game.p.getX() + " " + Game.p.getY() + " " + this.Collider.getX() + " " + this.Collider.getY() );
 		Draw();
 		CheckPickUp();
 

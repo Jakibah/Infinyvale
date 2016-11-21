@@ -21,6 +21,7 @@ public class Player {
 	private int maxHealth;
 	private Texture EmptyHeart, Heart;
 
+	//TODO damage and fight system
 	public Player(Texture tex, int x, int y, int texturefactor, int walkspeed, int runspeed, int health, int maxhealth) {
 		this.tex = tex;
 		this.x = x;
