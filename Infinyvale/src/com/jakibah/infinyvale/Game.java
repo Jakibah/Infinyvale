@@ -15,6 +15,7 @@ public class Game {
 	public static Inventory i = null;
 	public static World world = null;
 	public static Textdrawer Cardinal = new Textdrawer("Cardinal"); 
+	public static Textdrawer VCR_OSD_MONO = new Textdrawer("VCR_OSD_MONO", 15);
 	
 	
 	
@@ -24,6 +25,7 @@ public class Game {
 	public static void Start() {
 		System.out.println("Starting...");
 		//TODO set health from save
+		Speech.Start();
 		p = new Player(Canvas.QuickLoad("character/testplayer"),
 				(Display.getWidth() / 2) - 16, (Display.getHeight() / 2) - 32,
 				32, 2, 4, 3, 5);

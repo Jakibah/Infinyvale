@@ -12,8 +12,25 @@ import org.newdawn.slick.util.ResourceLoader;
 public class Textdrawer {
 	private TrueTypeFont fontdrawer;
 	private String font;
-	
-	public Textdrawer(String font){
+	private int size;
+
+	public Textdrawer(String font, int size) {
+		this.size = size;
+		this.font = font;
+		System.out.println("INFO: Text renderer Loaded = true");
+		try {
+			InputStream inputStream = ResourceLoader
+					.getResourceAsStream("com/jakibah/infinyvale/resources/fonts/" + font + ".ttf");
+			Font awtFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+			Font awtFont2 = awtFont.deriveFont(awtFont.getStyle(), size);
+			this.fontdrawer = new TrueTypeFont(awtFont2, false);
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Textdrawer(String font) {
+		this.font = font;
 		System.out.println("INFO: Text renderer Loaded = true");
 		try {
 			InputStream inputStream = ResourceLoader
@@ -25,12 +42,13 @@ public class Textdrawer {
 			e.printStackTrace();
 		}
 	}
-	
-	public void Draw(int x, int y, String text){
+
+	public void Draw(int x, int y, String text) {
 		fontdrawer.drawString(x, y, text);
 	}
-	//FIXME Glitch G0001I
-	public void Draw(int x, int y, String text, Color c){
+
+	// FIXME Glitch G0001I
+	public void Draw(int x, int y, String text, Color c) {
 		fontdrawer.drawString(x, y, text, c);
 	}
 
