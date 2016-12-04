@@ -7,6 +7,7 @@ import java.util.Random;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.Rectangle;
+import org.newdawn.slick.openal.Audio;
 import org.newdawn.slick.opengl.Texture;
 
 import com.jakibah.infinyvale.Canvas;
@@ -19,7 +20,9 @@ import com.jakibah.infinyvale.World;
 public class Wasp extends Monster {
 	private Texture tex;
 	private Rectangle Collider;
-
+    private int goalx = 0;
+    private int goaly = 0;
+    private Audio Walk = Canvas.QuickLoadAudio("monsters/beewalk");
 	//set only x,y
 	public Wasp(Texture tex, int x, int y, int texturefactor, int basedamage, int health, Item drop) {
 		super(x, y, texturefactor, basedamage, health, drop);
@@ -36,8 +39,13 @@ public class Wasp extends Monster {
 		
 		
 	}
+	
 	public void Draw(){
-		Canvas.DrawQuadTex(tex, this.x, this.y, texturefactor, texturefactor);
+		float angle = Canvas.LookAt(this.x, this.y, goalx, goaly);
+		Canvas.DrawQuadTexRot(tex, this.x, this.y, texturefactor, texturefactor, angle);
+		if(!Walk.isPlaying()){
+		Walk.playAsSoundEffect(1, 1, false);
+	}
 	}
 	@Override
 	public void Update(){
@@ -75,6 +83,8 @@ public class Wasp extends Monster {
 		if(!retreat && this.y < Game.p.getY()){
 			this.setY(this.getY()+2);
 		}
+		goalx = Game.p.getX();
+		goaly = Game.p.getY();
 		if(!retreat && Canvas.isColliding(this.Collider, Game.p.getCollider())){
 			retreat = true;
 			ranx = r.nextInt(Display.getWidth() + 1);
@@ -95,6 +105,8 @@ public class Wasp extends Monster {
 			if(this.y < rany){
 				this.setY(this.getY()+1);
 			}
+			goalx = ranx;
+			goaly = rany;
 			if(this.x == ranx && this.y == rany){
 				retreat = false;
 				System.out.println("reached " + "ranx: " + ranx + " rany: " + rany);

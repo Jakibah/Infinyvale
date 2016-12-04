@@ -37,10 +37,10 @@ public class Chunk {
 		// items.add(new Item(ItemType.Weapon, Canvas.QuickLoad("testitem32"),
 		// r.nextInt(Display.getWidth() - 32), r.nextInt(Display.getHeight() -
 		// 32), this, 32, 100, 1));
-		// items.add(new Item("HealPotion",
-		// Canvas.QuickLoad("items/healpotion"), 150, 142, 32));
-		// monster.add(new Wasp(null, 142, 150, 0, 0, 0, null));
-		npc.add(new NPC(150, 136, 32, Canvas.QuickLoad("items/testitem"), true, Race.Human, "female"));
+		//TODO fix monster drops.
+		// items.add(new Item("HealPotion", Canvas.QuickLoad("items/healpotion"), 150, 142, 32));
+		monster.add(new Wasp(null, 142, 150, 0, 0, 0, null));
+		//npc.add(new NPC(150, 136, 32, Canvas.QuickLoad("items/testitem"), true, Race.Human, "female"));
 
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
