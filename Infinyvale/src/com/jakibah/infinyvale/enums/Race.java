@@ -2,6 +2,7 @@ package com.jakibah.infinyvale.enums;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.Random;
@@ -28,7 +29,7 @@ public enum Race {
 		
 		List<String> lines = null;
 		try {
-			lines = Files.readAllLines(f.toPath());
+			lines = Files.readAllLines(f.toPath(), StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -121,7 +121,7 @@ public class Canvas {
 	}
 	public static Audio QuickLoadAudio(String name){
 		Audio sound = null;
-		sound = loadSound("com/jakibah/infinyvale/resources/sounds/" + name + ".mp3", "MP3"); 
+		sound = loadSound("com/jakibah/infinyvale/resources/sounds/" + name + ".wav", "WAV"); 
 		return sound;
 	}
 
